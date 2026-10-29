@@ -1,0 +1,44 @@
+services:
+  wordpress:
+    image: wordpress:6.8.3-php8.3-fpm-alpine
+    restart: unless-stopped
+    environment:
+      WORDPRESS_DB_HOST: database:3306
+      WORDPRESS_DB_NAME: "${WORDPRESS_DB_NAME}"
+      WORDPRESS_DB_USER: "${WORDPRESS_DB_USER}"
+      WORDPRESS_DB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      database:
+        condition: service_healthy
+    networks: [private]
+
+  database:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: "${WORDPRESS_DB_NAME}"
+      MARIADB_USER: "${WORDPRESS_DB_USER}"
+      MARIADB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+    networks: [private]
+
+volumes:
+  wordpress_data:
+  mariadb_data:
+
+networks:
+  private:
+    internal: true
+
+# Ejemplo no desplegable por si solo. En produccion se conectara a una red
+# Caddy administrada y se completaran dominio, limites y copias de seguridad.
+

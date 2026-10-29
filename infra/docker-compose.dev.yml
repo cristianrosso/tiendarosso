@@ -1,0 +1,46 @@
+services:
+  wordpress:
+    image: wordpress:6.8.3-php8.3-apache
+    restart: unless-stopped
+    ports:
+      - "${WORDPRESS_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: database:3306
+      WORDPRESS_DB_NAME: "${WORDPRESS_DB_NAME}"
+      WORDPRESS_DB_USER: "${WORDPRESS_DB_USER}"
+      WORDPRESS_DB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+    volumes:
+      - wordpress_data:/var/www/html
+      - ../wordpress/wp-content:/var/www/html/wp-content
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - tiendarosso_private
+
+  database:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: "${WORDPRESS_DB_NAME}"
+      MARIADB_USER: "${WORDPRESS_DB_USER}"
+      MARIADB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - tiendarosso_private
+
+volumes:
+  wordpress_data:
+  mariadb_data:
+
+networks:
+  tiendarosso_private:
+    name: tiendarosso_private
+
