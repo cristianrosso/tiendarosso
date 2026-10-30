@@ -28,3 +28,15 @@ add_action(
 		);
 	}
 );
+
+add_action(
+	'wp_enqueue_scripts',
+	static function (): void {
+		wp_enqueue_style(
+			'tiendarosso-style',
+			get_stylesheet_uri(),
+			array(),
+			(string) wp_get_theme()->get( 'Version' )
+		);
+	}
+);

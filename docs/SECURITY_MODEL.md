@@ -29,3 +29,12 @@ Crear dos comerciantes y comprobar que cada uno no pueda:
 ## Datos y retención
 
 Desinstalar el plugin no elimina solicitudes, planes ni configuraciones. Cualquier borrado requiere una decisión explícita de retención. Producción necesitará política, exportación/borrado de datos personales, backups y cifrado de secretos fuera del repositorio.
+
+## Checkout S3
+
+- WooCommerce valida precios, stock, variaciones, cantidades y total en el servidor.
+- La compra directa usa nonce y conserva las validaciones nativas de `add_to_cart`.
+- El checkout permite invitado; no transmite información a píxeles ni servicios publicitarios.
+- Un pedido `pending` u `on-hold` se muestra como pago no confirmado y no emite `purchase`.
+- El método de prueba y las notificaciones de correo están restringidos al fixture local.
+- Una pasarela QR futura deberá verificar firma, monto, moneda, pedido e idempotencia desde backend antes de llamar a `payment_complete`.

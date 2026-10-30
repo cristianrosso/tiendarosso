@@ -4,9 +4,9 @@ Marketplace y portal comercial para productos de terceros, soluciones tecnológi
 
 ## Estado actual
 
-La versión `0.2.0` conserva P0 + P1 y entrega el primer corte funcional de P2/P4: portada orientada a marketplace, landing premium `/vende-con-nosotros/`, tema de bloques, planes editables, formulario persistente, panel comercial y WhatsApp configurable.
+La versión `0.3.0` conserva P0 + P1, amplía P2/P4 y completa el Sprint S3 de compra local: catálogo WooCommerce, producto simple/variable/agotado, carrito, checkout invitado, pedido real no pagado y confirmación de estado veraz.
 
-WooCommerce se validó solo en el entorno local. Todavía no hay pagos, suscripciones, activaciones, campañas, motor multivendedor ni despliegue de producción. El formulario estático es una demostración; el bloque WordPress sí registra solicitudes privadas.
+WooCommerce se validó solo en el entorno local. No hay pasarela QR ni pago real, suscripciones, activaciones, campañas, motor multivendedor ni despliegue de producción. El método de cheque de WooCommerce se usa únicamente como instrumento local para crear un pedido `on-hold` y nunca se presenta como pago confirmado.
 
 ## Inicio rápido
 
@@ -28,6 +28,7 @@ La prueba WordPress requiere una instalación local activa y credenciales efíme
 
 ```powershell
 npm.cmd run test:wordpress
+npm.cmd run test:checkout
 ```
 
 ## Rutas del prototipo
@@ -37,15 +38,17 @@ npm.cmd run test:wordpress
 - `/soluciones/violet-flow/`
 - `/soluciones/rguilex/`
 - `/vende-con-nosotros/`
+- `/shop/`, `/cart/` y `/checkout/` — WordPress local con WooCommerce activo.
 
 ## Estructura
 
 - `prototype/`: experiencia visual estática y revisable.
 - `tests/e2e/`: pruebas funcionales y capturas con Playwright.
-- `tests/wordpress/`: persistencia, accesibilidad y edición administrativa.
+- `tests/wordpress/`: persistencia, accesibilidad, edición administrativa y checkout real local.
+- `tests/fixtures/`: catálogo y verificación de pedido restringidos a localhost.
 - `docs/`: especificación, arquitectura, diseño, embudos y estado.
 - `infra/`: ejemplos de desarrollo y producción sin despliegue.
-- `wordpress/`: tema de bloques y plugin comercial v0.2.0.
+- `wordpress/`: tema de bloques y plugin comercial v0.3.0.
 
 ## Seguridad
 

@@ -6,7 +6,7 @@
 2. **SaaS propio:** Docentech, Violet Flow y Rguilex con landings y demostraciones verificables.
 3. **Servicios para negocios:** vitrinas, catálogo, landing, captación, campañas y optimización asistida por IA.
 
-## Componentes implementados en v0.2.0
+## Componentes implementados en v0.3.0
 
 ### Tema `tiendarosso`
 
@@ -21,6 +21,7 @@ Tema de bloques con `theme.json`, templates, header/footer editables y una landi
 - Configuración administrativa de números por servicio.
 - Roles: administrador, administrador comercial y comerciante mínimo.
 - Registro acotado de cambios en planes y estados.
+- Adaptador transaccional S3: compra directa, eventos internos, estado de pago veraz y referencia privada de vendedor por línea.
 
 ## Entidades futuras
 
@@ -44,3 +45,14 @@ Tema de bloques con `theme.json`, templates, header/footer editables y una landi
 ## Límites actuales
 
 No existe todavía un comerciante con acceso a productos ni pedidos. El rol `tr_merchant` tiene solo `read` hasta seleccionar y probar el motor multivendedor. Esta restricción evita una falsa sensación de aislamiento.
+
+El pedido S3 pertenece por completo a WooCommerce. No se calculan comisiones, saldos ni repartos. S6 deberá definir propietario del producto, snapshot del vendedor por línea, comisión inmutable, reembolsos parciales y visibilidad aislada antes de habilitar pedidos a comerciantes.
+
+## Decisiones requeridas para S6
+
+- El producto deberá tener un propietario único y cada línea conservar un snapshot privado del vendedor.
+- Un pedido mixto podrá mantenerse como pedido padre, pero fulfillment, envío, devolución y visibilidad deberán separarse por comerciante.
+- La responsabilidad y costo de envío deberán definirse por producto/tienda sin permitir que un vendedor modifique líneas ajenas.
+- La elección final del motor multivendedor deberá respetar HPOS, Checkout Blocks, productos variables y la pasarela QR seleccionada.
+- Comisiones y liquidaciones serán registros contables inmutables; no habrá reparto automático sin soporte explícito del proveedor financiero.
+- Las capacidades del rol comerciante permanecerán cerradas hasta superar pruebas con dos vendedores ficticios y aislamiento de productos, clientes, pedidos y medios.

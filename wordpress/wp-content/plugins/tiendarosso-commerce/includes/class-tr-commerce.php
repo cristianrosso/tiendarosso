@@ -19,6 +19,7 @@ final class TR_Commerce {
 		TR_Settings::boot();
 		TR_Forms::boot();
 		TR_Blocks::boot();
+		TR_Checkout::boot();
 
 		add_action( 'admin_menu', array( __CLASS__, 'register_menu' ), 5 );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_public_assets' ) );
@@ -30,6 +31,7 @@ final class TR_Commerce {
 	public static function activate(): void {
 		TR_Roles::install();
 		TR_Post_Types::register();
+		TR_Checkout::maybe_upgrade();
 		self::seed_plans();
 		self::seed_seller_page();
 		flush_rewrite_rules();
@@ -75,6 +77,29 @@ final class TR_Commerce {
 	public static function enqueue_public_assets(): void {
 		wp_enqueue_style( 'tr-commerce-public', TR_COMMERCE_URL . 'assets/public.css', array(), TR_COMMERCE_VERSION );
 		wp_enqueue_script( 'tr-commerce-public', TR_COMMERCE_URL . 'assets/public.js', array(), TR_COMMERCE_VERSION, true );
+
+		$config = array(
+			'currency' => function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : 'BOB',
+			'page'     => 'content',
+			'events'   => class_exists( 'WooCommerce' ) ? TR_Checkout::consume_events() : array(),
+		);
+		if ( function_exists( 'is_product' ) && is_product() ) {
+			global $product;
+			$config['page'] = 'product';
+			if ( $product instanceof WC_Product ) {
+				$config['item'] = array(
+					'item_id'  => (string) $product->get_id(),
+					'sku'      => (string) $product->get_sku(),
+					'value'    => (float) wc_get_price_to_display( $product ),
+					'currency' => get_woocommerce_currency(),
+				);
+			}
+		} elseif ( function_exists( 'is_cart' ) && is_cart() ) {
+			$config['page'] = 'cart';
+		} elseif ( function_exists( 'is_checkout' ) && is_checkout() ) {
+			$config['page'] = function_exists( 'is_order_received_page' ) && is_order_received_page() ? 'order_received' : 'checkout';
+		}
+		wp_localize_script( 'tr-commerce-public', 'trCommerceConfig', $config );
 	}
 
 	/**
