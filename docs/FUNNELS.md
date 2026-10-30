@@ -7,7 +7,7 @@ Campaña o búsqueda → Landing de solución → Solicitud de demo
 → Consentimiento y registro seguro → Seguimiento comercial → Contratación
 ```
 
-P1 implementa solo la experiencia hasta la confirmación visual local del formulario. No se envían datos. P4 conectará un endpoint seguro y el panel de oportunidades.
+La vista estática implementa solo la confirmación visual y no envía datos. v0.2.0 conecta el bloque WordPress con nonce, honeypot, rate limit, post privado, notificación administrativa y estados de seguimiento.
 
 Campos previstos: nombre, correo, WhatsApp, empresa, solución, plan, origen, UTM y consentimiento. El teléfono será opcional hasta definir la política comercial.
 
@@ -26,4 +26,13 @@ La activación debe empezar únicamente con un estado de pago confirmado e idemp
 - Solicitar demostración → formulario local rotulado como prototipo.
 - Conocer solución → landing correspondiente.
 - Hablar sobre un plan → formulario con solución preseleccionada.
+
+## Servicios para negocios
+
+```text
+Campaña o búsqueda → /vende-con-nosotros/ → Comparación de planes
+→ Formulario o WhatsApp configurado → Solicitud privada → Seguimiento → Contratación
+```
+
+Los honorarios del servicio y el presupuesto publicitario se mantienen separados. WhatsApp es un contacto, no una contratación.
 

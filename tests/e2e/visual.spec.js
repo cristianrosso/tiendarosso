@@ -3,6 +3,7 @@ import { mkdir } from 'node:fs/promises';
 
 const pages = [
   ['home', '/'],
+  ['vende-con-nosotros', '/vende-con-nosotros/'],
   ['docentech', '/soluciones/docentech/'],
   ['violet-flow', '/soluciones/violet-flow/'],
   ['rguilex', '/soluciones/rguilex/']

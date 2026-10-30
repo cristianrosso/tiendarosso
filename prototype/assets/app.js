@@ -175,8 +175,43 @@ function initDemoForms() {
   });
 }
 
+function initServicePreviewForms() {
+  document.querySelectorAll('[data-service-preview-form]').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const status = form.querySelector('[data-form-status]');
+      status.className = 'form-status is-visible';
+      if (!form.checkValidity()) {
+        status.classList.add('is-error');
+        status.textContent = 'Revisa los campos obligatorios y el consentimiento necesario para responder.';
+        form.reportValidity();
+        return;
+      }
+      status.classList.add('is-success');
+      status.textContent = 'Validación completada. Esta vista no envía datos; la versión WordPress registra la solicitud en el panel privado.';
+      form.querySelector('button[type="submit"]').textContent = 'Solicitud de muestra validada ✓';
+    });
+  });
+}
+
+function initCategorySearch() {
+  const input = document.querySelector('[data-category-search]');
+  const grid = document.querySelector('[data-category-grid]');
+  if (!input || !grid) return;
+  input.addEventListener('input', () => {
+    const query = input.value.trim().toLocaleLowerCase('es');
+    grid.querySelectorAll('[data-category]').forEach((card) => {
+      const text = card.textContent.toLocaleLowerCase('es');
+      const matches = !query || card.dataset.category.includes(query) || text.includes(query);
+      card.classList.toggle('is-hidden', !matches);
+    });
+  });
+}
+
 initNavigation();
 initReveal();
 initExplorer();
 initDemoForms();
+initServicePreviewForms();
+initCategorySearch();
 

@@ -1,0 +1,157 @@
+/*
+Theme Name: TIENDA ROSSO
+Theme URI: https://github.com/cristianrosso/tiendarosso
+Author: TIENDA ROSSO
+Description: Tema de bloques comercial para marketplace, soluciones digitales y captación de negocios.
+Version: 0.2.0
+Requires at least: 7.1
+Requires PHP: 8.1
+Text Domain: tiendarosso
+*/
+
+:root {
+  --tr-purple: #6927d8;
+  --tr-lavender: #9664ff;
+  --tr-blue: #477bff;
+  --tr-paper: #f7f8fc;
+  --tr-ink: #17172e;
+  --tr-muted: #5f5f70;
+}
+
+html { scroll-behavior: smooth; }
+body { overflow-x: clip; }
+.wp-site-blocks { overflow: clip; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid #b99aff;
+  outline-offset: 3px;
+}
+.tr-site-header {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  border-bottom: 1px solid rgba(23, 23, 46, .1);
+  background: rgba(247, 248, 252, .92);
+  backdrop-filter: blur(18px);
+}
+.tr-brand { letter-spacing: .08em; }
+.tr-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 16%, rgba(150, 100, 255, .28), transparent 30%),
+    radial-gradient(circle at 8% 70%, rgba(71, 123, 255, .16), transparent 28%),
+    linear-gradient(145deg, #fbfbff, #f0effb);
+}
+.tr-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .28;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(23,23,46,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(23,23,46,.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+.tr-hero > .wp-block-group__inner-container { position: relative; z-index: 1; }
+.tr-kicker { text-transform: uppercase; letter-spacing: .16em; font-size: .7rem; font-weight: 800; }
+.tr-gradient-text {
+  color: var(--tr-purple);
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+.tr-card {
+  height: 100%;
+  border: 1px solid rgba(23,23,46,.1);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(45, 28, 90, .09);
+}
+.tr-card-dark {
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(145deg, #17172e, #2a1b4b);
+}
+.tr-card-dark p { color: rgba(255,255,255,.72); }
+.tr-number {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 14px;
+  color: var(--tr-purple);
+  background: #eee7ff;
+  font-weight: 800;
+}
+.tr-mockup {
+  min-height: 420px;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 30px;
+  background: linear-gradient(145deg, #34205e, #7a42dd);
+  box-shadow: 0 35px 80px rgba(57, 26, 120, .28);
+}
+.tr-mockup-window {
+  margin: 48px 36px;
+  padding: 22px;
+  border: 8px solid rgba(255,255,255,.9);
+  border-radius: 20px;
+  color: var(--tr-ink);
+  background: var(--tr-paper);
+  transform: rotate(-2deg);
+}
+.tr-mockup-row { display: flex; gap: 12px; margin-top: 16px; }
+.tr-mockup-box { min-height: 80px; flex: 1; border-radius: 12px; background: #fff; box-shadow: 0 10px 25px rgba(23,23,46,.08); }
+.tr-section-dark { color: #fff; background: #17172e; }
+.tr-section-dark p { color: rgba(255,255,255,.7); }
+.tr-feature-list { list-style: none; padding-left: 0; }
+.tr-feature-list li { margin-bottom: .75rem; }
+.tr-feature-list li::before { content: "✓"; margin-right: .7rem; color: var(--tr-purple); font-weight: 900; }
+.tr-form-shell {
+  border: 1px solid rgba(23,23,46,.1);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 28px 70px rgba(45,28,90,.1);
+}
+.tr-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.tr-field { display: grid; gap: 7px; }
+.tr-field-wide { grid-column: 1 / -1; }
+.tr-field label, .tr-field legend { font-size: .8rem; font-weight: 700; }
+.tr-field input, .tr-field select, .tr-field textarea {
+  width: 100%;
+  min-height: 50px;
+  padding: 11px 14px;
+  border: 1px solid #cfcfdb;
+  border-radius: 12px;
+  color: var(--tr-ink);
+  background: #fff;
+}
+.tr-field textarea { min-height: 125px; resize: vertical; }
+.tr-check { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start; font-size: .82rem; }
+.tr-check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--tr-purple); }
+.tr-form-status { padding: 14px 16px; border-radius: 12px; }
+.tr-form-status-success { color: #075b3e; background: #e2f8ee; border: 1px solid #9cdec4; }
+.tr-form-status-error { color: #8f2416; background: #fff0ed; border: 1px solid #f1b0a6; }
+.tr-plan-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.tr-plan-card { position: relative; padding: 30px; display: flex; flex-direction: column; border: 1px solid rgba(23,23,46,.12); border-radius: 25px; background: #fff; }
+.tr-plan-card:nth-child(2) { color: #fff; border-color: transparent; background: #17172e; transform: translateY(-12px); }
+.tr-plan-card:nth-child(2) p, .tr-plan-card:nth-child(2) li { color: rgba(255,255,255,.76); }
+.tr-plan-card .wp-element-button { margin-top: auto; }
+.tr-plan-price { min-height: 32px; color: var(--tr-muted); font-size: .8rem; font-weight: 700; }
+.tr-plan-card:nth-child(2) .tr-plan-price { color: #d6c6ef; }
+.tr-whatsapp-unconfigured { display: inline-block; padding: 12px 18px; border: 1px dashed #8f8f9f; border-radius: 999px; color: var(--tr-muted); }
+.tr-honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+
+@media (max-width: 900px) {
+  .tr-plan-grid { grid-template-columns: 1fr; }
+  .tr-plan-card:nth-child(2) { transform: none; }
+}
+@media (max-width: 640px) {
+  .tr-form-grid { grid-template-columns: 1fr; }
+  .tr-field-wide { grid-column: auto; }
+  .tr-mockup { min-height: 320px; }
+  .tr-mockup-window { margin: 32px 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

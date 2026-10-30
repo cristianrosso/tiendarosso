@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "tiendarosso/plans-comparison",
+  "version": "0.2.0",
+  "title": "Comparador de planes",
+  "category": "widgets",
+  "icon": "columns",
+  "description": "Muestra los planes publicados y administrados desde TIENDA ROSSO.",
+  "textdomain": "tiendarosso-commerce",
+  "supports": { "html": false, "align": ["wide", "full"] }
+}

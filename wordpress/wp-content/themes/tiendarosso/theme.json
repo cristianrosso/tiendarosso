@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": { "contentSize": "760px", "wideSize": "1240px" },
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        { "slug": "purple", "color": "#6927D8", "name": "Violeta" },
+        { "slug": "lavender", "color": "#9664FF", "name": "Lavanda" },
+        { "slug": "blue", "color": "#477BFF", "name": "Azul" },
+        { "slug": "paper", "color": "#F7F8FC", "name": "Fondo" },
+        { "slug": "ink", "color": "#17172E", "name": "Texto" },
+        { "slug": "white", "color": "#FFFFFF", "name": "Blanco" }
+      ]
+    },
+    "spacing": {
+      "units": ["px", "rem", "vw", "%"],
+      "spacingSizes": [
+        { "slug": "20", "size": "0.75rem", "name": "XS" },
+        { "slug": "30", "size": "1.25rem", "name": "S" },
+        { "slug": "40", "size": "2rem", "name": "M" },
+        { "slug": "50", "size": "3.5rem", "name": "L" },
+        { "slug": "60", "size": "6rem", "name": "XL" }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        { "slug": "sans", "name": "Sans moderna", "fontFamily": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" },
+        { "slug": "serif", "name": "Serif editorial", "fontFamily": "Georgia, serif" }
+      ],
+      "fontSizes": [
+        { "slug": "small", "size": "0.85rem", "name": "Pequeño" },
+        { "slug": "medium", "size": "1rem", "name": "Medio" },
+        { "slug": "large", "size": "1.4rem", "name": "Grande" },
+        { "slug": "x-large", "size": "clamp(2.4rem, 5vw, 5rem)", "name": "Titular" }
+      ]
+    }
+  },
+  "styles": {
+    "color": { "background": "#F7F8FC", "text": "#17172E" },
+    "spacing": { "blockGap": "1.5rem" },
+    "typography": { "fontFamily": "var(--wp--preset--font-family--sans)", "lineHeight": "1.55" },
+    "elements": {
+      "heading": { "typography": { "fontWeight": "780", "lineHeight": "1.02", "letterSpacing": "-0.04em" } },
+      "button": {
+        "border": { "radius": "999px" },
+        "color": { "background": "#6927D8", "text": "#FFFFFF" },
+        "spacing": { "padding": { "top": "0.85rem", "right": "1.4rem", "bottom": "0.85rem", "left": "1.4rem" } },
+        "typography": { "fontSize": "0.85rem", "fontWeight": "700" }
+      },
+      "link": { "color": { "text": "#6927D8" } }
+    }
+  },
+  "templateParts": [
+    { "name": "header", "title": "Cabecera", "area": "header" },
+    { "name": "footer", "title": "Pie", "area": "footer" }
+  ]
+}

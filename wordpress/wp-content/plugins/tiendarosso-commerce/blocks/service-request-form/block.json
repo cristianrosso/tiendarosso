@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "tiendarosso/service-request-form",
+  "version": "0.2.0",
+  "title": "Formulario de solicitud comercial",
+  "category": "widgets",
+  "icon": "feedback",
+  "description": "Registra solicitudes privadas con consentimiento y atribución UTM.",
+  "textdomain": "tiendarosso-commerce",
+  "attributes": {
+    "selectedPlan": { "type": "string", "default": "" }
+  },
+  "supports": { "html": false, "align": ["wide", "full"] }
+}

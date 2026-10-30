@@ -1,14 +1,15 @@
 {
   "name": "tiendarosso",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Prototipo comercial P1 de TIENDA ROSSO, futuro portal WordPress/Gutenberg.",
+  "description": "Marketplace y portal comercial TIENDA ROSSO con prototipo premium y base WordPress/Gutenberg.",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test:e2e": "playwright test",
-    "test:visual": "playwright test tests/e2e/visual.spec.js"
+    "test:visual": "playwright test tests/e2e/visual.spec.js",
+    "test:wordpress": "playwright test --config=playwright.wordpress.config.js"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",

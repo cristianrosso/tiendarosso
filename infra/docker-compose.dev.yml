@@ -1,7 +1,8 @@
 services:
   wordpress:
-    image: wordpress:6.8.3-php8.3-apache
+    image: wordpress:7.1.4-php8.3-apache
     restart: unless-stopped
+    mem_limit: 768m
     ports:
       - "${WORDPRESS_PORT:-8080}:80"
     environment:
@@ -21,6 +22,7 @@ services:
   database:
     image: mariadb:11.4
     restart: unless-stopped
+    mem_limit: 640m
     environment:
       MARIADB_DATABASE: "${WORDPRESS_DB_NAME}"
       MARIADB_USER: "${WORDPRESS_DB_USER}"

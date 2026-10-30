@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('TIENDA ROSSO P1', () => {
+test.describe('TIENDA ROSSO P2/P4', () => {
   test('la portada carga y el selector cambia contenido y destino', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Tu negocio puede');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Tu próxima gran');
     await page.getByRole('tab', { name: /Violet Flow/ }).click();
     await expect(page.locator('[data-product-title]')).toContainText('conversaciones');
     await expect(page.locator('[data-product-cta]')).toHaveAttribute('href', '/soluciones/violet-flow/');
@@ -24,6 +24,37 @@ test.describe('TIENDA ROSSO P1', () => {
       await expect(page.locator('main h1')).toBeVisible();
     });
   }
+
+  test('la portada filtra categorías sin inventar productos', async ({ page }) => {
+    await page.goto('/#marketplace-preview');
+    await page.getByLabel('Buscar una categoría').fill('alimentos');
+    await expect(page.locator('[data-category="alimentos"]')).toBeVisible();
+    await expect(page.locator('[data-category="tecnología"]')).toBeHidden();
+    await expect(page.getByText('El catálogo real comienza con negocios verificados.')).toBeVisible();
+  });
+
+  test('Vende con nosotros presenta planes honestos y valida la solicitud', async ({ page }) => {
+    const response = await page.goto('/vende-con-nosotros/');
+    expect(response?.ok()).toBeTruthy();
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Tu negocio merece');
+    await expect(page.getByText('Precio pendiente de aprobación')).toHaveCount(3);
+    await expect(page.getByText('WhatsApp por configurar')).toBeVisible();
+
+    const form = page.locator('[data-service-preview-form]');
+    await form.getByRole('button', { name: /Validar solicitud/ }).click();
+    await expect(form.locator('[data-form-status]')).toContainText('campos obligatorios');
+    await form.getByLabel('Nombre del solicitante').fill('Prueba Rosso');
+    await form.getByLabel('Nombre del negocio').fill('Comercio de prueba');
+    await form.getByLabel('Rubro').fill('Alimentos');
+    await form.getByLabel('Ciudad').fill('La Paz');
+    await form.getByLabel('WhatsApp').fill('70000000');
+    await form.getByLabel('Correo electrónico').fill('prueba@example.com');
+    await form.getByLabel('Plan de interés').selectOption({ label: 'Plan Negocio' });
+    await form.getByLabel('Tipo de servicio').selectOption({ label: 'Espacio comercial' });
+    await form.getByLabel(/Acepto el tratamiento/).check();
+    await form.getByRole('button', { name: /Validar solicitud/ }).click();
+    await expect(form.locator('[data-form-status]')).toContainText('Validación completada');
+  });
 
   test('el formulario exige consentimiento y no envía datos', async ({ page }) => {
     const externalRequests = [];

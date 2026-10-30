@@ -1,0 +1,3 @@
+.tr-service-form button[disabled] { cursor: wait; opacity: .7; }
+.tr-service-form :invalid:not(:placeholder-shown) { border-color: #b53d2c; }
+.tr-service-form input[type="checkbox"]:invalid { outline: 2px solid #b53d2c; }

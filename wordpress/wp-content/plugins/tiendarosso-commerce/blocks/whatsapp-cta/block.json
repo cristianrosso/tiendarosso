@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "tiendarosso/whatsapp-cta",
+  "version": "0.2.0",
+  "title": "CTA de WhatsApp",
+  "category": "widgets",
+  "icon": "whatsapp",
+  "description": "Genera un contacto contextual usando el número configurado por el administrador.",
+  "textdomain": "tiendarosso-commerce",
+  "attributes": {
+    "context": { "type": "string", "default": "general" },
+    "label": { "type": "string", "default": "Consultar por WhatsApp" },
+    "plan": { "type": "string", "default": "los servicios de TIENDA ROSSO" }
+  },
+  "supports": { "html": false }
+}

@@ -11,7 +11,8 @@ export default defineConfig({
         home: resolve(import.meta.dirname, 'prototype/index.html'),
         docentech: resolve(import.meta.dirname, 'prototype/soluciones/docentech/index.html'),
         violetFlow: resolve(import.meta.dirname, 'prototype/soluciones/violet-flow/index.html'),
-        rguilex: resolve(import.meta.dirname, 'prototype/soluciones/rguilex/index.html')
+        rguilex: resolve(import.meta.dirname, 'prototype/soluciones/rguilex/index.html'),
+        vendeConNosotros: resolve(import.meta.dirname, 'prototype/vende-con-nosotros/index.html')
       }
     }
   }
